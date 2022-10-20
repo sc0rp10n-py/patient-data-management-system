@@ -1,8 +1,26 @@
+import Link from "next/link";
+
 // pages/index.js
 export default function Home() {
     return (
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    )
-  }
+        <>
+            <div className="container mx-auto">
+                <div className="my-10">
+                    <h1 className="text-4xl text-center">
+                        Patient Database Management System
+                    </h1>
+                </div>
+                <div>
+                    <h1 className="text-2xl">Our Links</h1>
+                    <div className="flex flex-col">
+                        <Link href={"/payments"}>
+                            <a className="text-blue-500 hover:text-blue-600">
+                                Payments
+                            </a>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
