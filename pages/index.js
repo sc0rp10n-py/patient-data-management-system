@@ -13,11 +13,13 @@ export default function Home() {
                 <div>
                     <h1 className="text-2xl">Our Links</h1>
                     <div className="flex flex-col">
-                        <Link href={"/payments"}>
-                            <a className="text-blue-500 hover:text-blue-600">
-                                Payments
-                            </a>
-                        </Link>
+                    <form action="/api/payGateway" method="POST">
+                     <section>
+                   <button type="submit" role="link">
+                    Payments
+                    </button>
+                   </section>
+                   </form>
                     </div>
                 </div>
             </div>
