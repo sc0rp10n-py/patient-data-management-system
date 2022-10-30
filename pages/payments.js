@@ -1,14 +1,28 @@
-import Payment from "../components/payment";
+import Link from "next/link";
 
-const Payments = () => {
+// pages/index.js
+export default function Home() {
     return (
         <>
-            <div className="container mx-auto my-10">
-                <h1 className="text-4xl text-center">Test Payment Page</h1>
-                <Payment />
+            <div className="container mx-auto">
+                <div className="my-10">
+                    <h1 className="text-4xl text-center">
+                        Patient Database Management System
+                    </h1>
+                </div>
+                <div>
+                    <h1 className="text-2xl">Our Links</h1>
+                    <div className="flex flex-col">
+                    <form action="/api/payGateway" method="POST">
+                     <section>
+                   <button type="submit" role="link">
+                    Payments
+                    </button>
+                   </section>
+                   </form>
+                    </div>
+                </div>
             </div>
         </>
-    )
+    );
 }
-
-export default Payments;
