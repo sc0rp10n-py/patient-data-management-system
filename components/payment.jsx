@@ -3,9 +3,6 @@ import Link from "next/link";
 const Payment = () => {
     return (
         <>
-            <Link href={"/"}>
-                Go back to home
-            </Link>
             <div className="my-10 container mx-auto flex flex-col justify-center items-center">
                 <div className="border p-3 rounded">
                     <form>
