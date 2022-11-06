@@ -60,5 +60,20 @@
         "id": 4,
         "dateCreated": "2022-11-06T18:32:06.379Z",
         "dateUpdated": "2022-11-06T18:32:06.379Z"
+    },
+    {
+        "name": "image",
+        "email": "aaaasda@a.com",
+        "address": "C 259",
+        "city": "Delhi",
+        "country": "India",
+        "phone": "9185859939",
+        "bloodGroup": "B+",
+        "type": "pirogod",
+        "adminVerfiy": true,
+        "hash": "$2a$10$pOV3o/kZ3N3UlpNPbtkureechxxnJ7Mows.AroWcpNr.vWIA1cxcO",
+        "id": 5,
+        "dateCreated": "2022-11-06T19:46:35.621Z",
+        "dateUpdated": "2022-11-06T19:46:35.621Z"
     }
 ]
