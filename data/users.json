@@ -44,5 +44,24 @@
         "id": 3,
         "dateCreated": "2022-11-06T20:05:48.375Z",
         "dateUpdated": "2022-11-06T20:05:48.375Z"
+    },
+    {
+        "name": "Doctor 1",
+        "email": "doc1@gmail.com",
+        "address": "doc 1 address",
+        "city": "doc 1 city",
+        "country": "Korea, Democratic People's Republic of",
+        "phone": "2374829382",
+        "speciality": "General Practitioner",
+        "organisation": "Org 1",
+        "profession": "Doctor",
+        "license": "235436576432",
+        "licenseExpiry": "2022-11-24",
+        "type": "personnel",
+        "adminVerfiy": false,
+        "hash": "$2a$10$Kb4krGWdRDbTFYrKfWt61eI.Bzdq2xbF/Fa6mE/pMNYQHNyZKR6/q",
+        "id": 4,
+        "dateCreated": "2022-11-06T20:28:19.339Z",
+        "dateUpdated": "2022-11-06T20:28:19.339Z"
     }
 ]

@@ -178,7 +178,7 @@ const RegisterPers = () => {
             );
         }
         return orgs;
-    }
+    };
 
     return (
         <>
@@ -822,7 +822,26 @@ const RegisterPers = () => {
                                     Profession
                                     <span className="text-red-500">*</span>
                                 </label>
-                                <input
+                                <select
+                                    id="profession"
+                                    name="profession"
+                                    className="border px-4 py-2 rounded"
+                                    value={profession}
+                                    onChange={(e) =>
+                                        setProfession(e.target.value)
+                                    }
+                                    required
+                                >
+                                    <option value="">
+                                        Select your profession
+                                    </option>
+                                    <option value="Doctor">Doctor</option>
+                                    <option value="Nurse">Nurse</option>
+                                    <option value="Receptionist">
+                                        Receptionist
+                                    </option>
+                                </select>
+                                {/* <input
                                     type="text"
                                     id="profession"
                                     name="profession"
@@ -833,26 +852,88 @@ const RegisterPers = () => {
                                         setProfession(e.target.value)
                                     }
                                     required
-                                />
+                                /> */}
                             </div>
-                            <div className="flex flex-col my-2">
-                                <label htmlFor="speciality">
-                                    Speciality
-                                    <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="speciality"
-                                    name="speciality"
-                                    className="border px-4 py-2 rounded"
-                                    placeholder="Enter your speciality"
-                                    value={speciality}
-                                    onChange={(e) =>
-                                        setSpeciality(e.target.value)
-                                    }
-                                    required
-                                />
-                            </div>
+                            {profession === "Doctor" ? (
+                                <div className="flex flex-col my-2">
+                                    <label htmlFor="speciality">
+                                        Speciality
+                                        <span className="text-red-500">*</span>
+                                    </label>
+                                    <select
+                                        id="speciality"
+                                        name="speciality"
+                                        className="border px-4 py-2 rounded"
+                                        value={speciality}
+                                        onChange={(e) =>
+                                            setSpeciality(e.target.value)
+                                        }
+                                        required
+                                    >
+                                        <option value="">
+                                            Select your speciality
+                                        </option>
+                                        <option value="Cardiologist">
+                                            Cardiologist
+                                        </option>
+                                        <option value="Dentist">Dentist</option>
+                                        <option value="Dermatologist">
+                                            Dermatologist
+                                        </option>
+                                        <option value="Endocrinologist">
+                                            Endocrinologist
+                                        </option>
+
+                                        <option value="Gastroenterologist">
+                                            Gastroenterologist
+                                        </option>
+                                        <option value="General Practitioner">
+                                            General Practitioner
+                                        </option>
+                                        <option value="Gynecologist">
+                                            Gynecologist
+                                        </option>
+                                        <option value="Neurologist">
+                                            Neurologist
+                                        </option>
+                                        <option value="Oncologist">
+                                            Oncologist
+                                        </option>
+                                        <option value="Ophthalmologist">
+                                            Ophthalmologist
+                                        </option>
+                                        <option value="Orthopedic Surgeon">
+                                            Orthopedic Surgeon
+                                        </option>
+                                        <option value="Pediatrician">
+                                            Pediatrician
+                                        </option>
+                                        <option value="Psychiatrist">
+                                            Psychiatrist
+                                        </option>
+                                        <option value="Radiologist">
+                                            Radiologist
+                                        </option>
+                                        <option value="Surgeon">Surgeon</option>
+                                        <option value="Urologist">
+                                            Urologist
+                                        </option>
+                                    </select>
+
+                                    {/* <input
+                                        type="text"
+                                        id="speciality"
+                                        name="speciality"
+                                        className="border px-4 py-2 rounded"
+                                        placeholder="Enter your speciality"
+                                        value={speciality}
+                                        onChange={(e) =>
+                                            setSpeciality(e.target.value)
+                                        }
+                                        required
+                                    /> */}
+                                </div>
+                            ) : null}
                             <div className="flex flex-col my-2">
                                 <label htmlFor="organisation">
                                     Organisation
