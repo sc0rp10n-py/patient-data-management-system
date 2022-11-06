@@ -13,5 +13,36 @@
         "id": 1,
         "dateCreated": "2022-11-06T19:56:24.852Z",
         "dateUpdated": "2022-11-06T19:56:24.852Z"
+    },
+    {
+        "name": "Patient 1",
+        "email": "patient1@gmail.com",
+        "address": "Patien 1 Home",
+        "city": "Patien 1 City",
+        "country": "India",
+        "phone": "8473928173",
+        "bloodGroup": "A+",
+        "type": "patient",
+        "adminVerfiy": false,
+        "hash": "$2a$10$PXuiP1RZi/whs.iwY2WzpeNVHMKbXExrZXbo2HxSFKzXw6/Tz2jzy",
+        "id": 2,
+        "dateCreated": "2022-11-06T20:04:13.006Z",
+        "dateUpdated": "2022-11-06T20:04:13.006Z"
+    },
+    {
+        "name": "Org 1",
+        "email": "org1@gmail.com",
+        "address": "org 1 address",
+        "city": "org 1 city",
+        "country": "United States",
+        "phone": "2347892739",
+        "license": "234dfg3421",
+        "licenseExpiry": "2022-12-09",
+        "type": "Hospital",
+        "adminVerfiy": false,
+        "hash": "$2a$10$ITaYlPgcNCiqe8lewpIxLucPs.TrNxhd4dWXvYrC9nYGuBBZXpURu",
+        "id": 3,
+        "dateCreated": "2022-11-06T20:05:48.375Z",
+        "dateUpdated": "2022-11-06T20:05:48.375Z"
     }
 ]

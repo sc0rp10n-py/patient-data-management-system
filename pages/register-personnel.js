@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { userService } from "../services/userService";
+import users from "data/users.json";
 
 const RegisterPers = () => {
     const [name, setName] = useState("");
@@ -32,6 +33,18 @@ const RegisterPers = () => {
 
     const router = useRouter();
 
+    let organisations = [];
+
+    const orgOptions = () => {
+        users.map((user, i) => {
+            if (user.type === "Hospital") {
+                organisations.push(user.name);
+                console.log(organisations);
+            }
+        });
+    };
+
+    orgOptions();
     useEffect(() => {
         const checkPassword = () => {
             // const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -129,7 +142,7 @@ const RegisterPers = () => {
     const handleDate = (expiryDate) => {
         const date = new Date();
         const year = date.getFullYear();
-        const month = date.getMonth()+1;
+        const month = date.getMonth() + 1;
         const day = date.getDate();
         const expiry = expiryDate.split("-");
         const expiryYear = expiry[0];
@@ -154,6 +167,18 @@ const RegisterPers = () => {
         }
         return true;
     };
+
+    const listOrg = () => {
+        const orgs = [];
+        for (let i = 0; i < organisations.length; i++) {
+            orgs.push(
+                <option key={i} value={organisations[i]}>
+                    {organisations[i]}
+                </option>
+            );
+        }
+        return orgs;
+    }
 
     return (
         <>
@@ -833,7 +858,22 @@ const RegisterPers = () => {
                                     Organisation
                                     <span className="text-red-500">*</span>
                                 </label>
-                                <input
+                                <select
+                                    id="organisation"
+                                    name="organisation"
+                                    className="border px-4 py-2 rounded"
+                                    value={organisation}
+                                    onChange={(e) =>
+                                        setOrganisation(e.target.value)
+                                    }
+                                    required
+                                >
+                                    <option value="Select your organisation">
+                                        Select your organisation
+                                    </option>
+                                    {listOrg()}
+                                </select>
+                                {/* <input
                                     type="text"
                                     id="organisation"
                                     name="organisation"
@@ -844,7 +884,7 @@ const RegisterPers = () => {
                                         setOrganisation(e.target.value)
                                     }
                                     required
-                                />
+                                /> */}
                             </div>
                             <div className="flex flex-col my-2">
                                 <label htmlFor="license">

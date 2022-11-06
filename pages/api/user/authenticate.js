@@ -34,6 +34,7 @@ function authenticate(req, res) {
         phone: user.phone,
         bloodGroup: user.bloodGroup,
         type: user.type,
+        adminVerify: user.adminVerify,
         token
     });
 }
