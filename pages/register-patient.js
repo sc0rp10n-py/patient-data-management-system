@@ -52,8 +52,6 @@ const RegisterPat = () => {
         type: "patient",
         adminVerify: false,
         license: license,
-        licenseFileName: "",
-        licenseFile: "",
     };
 
     useEffect(() => {

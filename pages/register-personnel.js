@@ -38,7 +38,7 @@ const RegisterPers = () => {
 
     const orgOptions = () => {
         users.map((user, i) => {
-            if (user.type === "Hospital") {
+            if (user.type === "Hospital" && user.adminVerify === true) {
                 organisations.push(user.name);
                 // console.log(organisations);
             }
@@ -124,8 +124,6 @@ const RegisterPers = () => {
         licenseExpiry: licenseExpiry,
         type: "personnel",
         adminVerify: false,
-        licenseFileName: "",
-        licenseFile: "",
     };
 
     const handleSubmit = async (e) => {

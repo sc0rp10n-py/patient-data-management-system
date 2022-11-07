@@ -110,8 +110,6 @@ const RegisterOrg = () => {
         licenseExpiry: licenseExpiry,
         type: type,
         adminVerify: false,
-        licenseFileName: "",
-        licenseFile: "",
     };
 
     const handleSubmit = async (e) => {

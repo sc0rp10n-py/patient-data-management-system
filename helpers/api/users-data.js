@@ -28,16 +28,30 @@ export function create(user) {
     saveData();
 }
 
-export function update(id, params) {
-    const user = users.find(x => x.id.toString() === id.toString());
+export function edit(id, params) {
+    const user = getById(id);
 
-    // set date updated
-    user.dateUpdated = new Date().toISOString();
+    // validate
+    if (!user) return;
 
-    // update and save
+    // copy params to user and save
     Object.assign(user, params);
+    user.dateUpdated = new Date().toISOString();
     saveData();
+
+    return user;
 }
+
+// export function update(id, params) {
+//     const user = users.find(x => x.id.toString() === id.toString());
+
+//     // set date updated
+//     user.dateUpdated = new Date().toISOString();
+
+//     // update and save
+//     Object.assign(user, params);
+//     saveData();
+// }
 
 export function verify(email) {
     const user = users.find(x => x.email === email);

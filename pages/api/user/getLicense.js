@@ -1,12 +1,14 @@
 import { ahandler } from "helpers/api/ahandler";
 import fs from "fs";
 let files = JSON.parse(fs.readFileSync("data/files.json"));
+let users = JSON.parse(fs.readFileSync("data/users.json"));
 
 const handler = async (req, res) => {
     try {
         const email = req.body;
+        const user = users.find((user) => user.email === email);
         const userFiles = files.filter(
-            (file) => file.owner === email && file.type === "License"
+            (file) => (file.owner === email && file.type === "License") || (user.type === "patient"  && file.owner === email && file.type === "Government ID")
         );
         // console.log(userFiles);
 

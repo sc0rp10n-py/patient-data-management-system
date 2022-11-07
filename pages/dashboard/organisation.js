@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { userService } from "../../services/userService";
+import Link from "next/link";
 
 const Organisation = () => {
     const [user, setUser] = useState({});
@@ -123,10 +124,12 @@ const Organisation = () => {
         <>
             <div className="container mx-auto my-10">
                 <h1 className="text-4xl text-center">Organisation Dashboard</h1>
+                <Link href="/edit">
+                    Edit Profile
+                </Link>
                 <div className="border rounded p-5 m-5">
                     <div className="space-y-3">
                         <h2>Name: {user.name}</h2>
-                        <h2>Type: {user.type}</h2>
                         <h2>License: {user.license}</h2>
                         <h2>License Expiry: {user.licenseExpiry}</h2>
                         <h2>Address: {user.address}</h2>
