@@ -25,9 +25,9 @@ const readFile = (req, tempfiles) => {
             if (err) {
                 reject(err);
             }
-            console.log("tempfiles", tempfiles);
+            // console.log("tempfiles", tempfiles);
             const tf = tempfiles.find((tf) => tf.name === files.file['originalFilename']);
-            console.log("tf", tf);
+            // console.log("tf", tf);
             tf.name = files.file['originalFilename'];
             tf.path = files.file['filepath'];
             create(tf);
