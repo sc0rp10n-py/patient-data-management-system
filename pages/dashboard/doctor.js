@@ -134,6 +134,9 @@ const Doctor = () => {
                         <h2>Country: {user.country}</h2>
                         <h2>Phone: {user.phone}</h2>
                         <h2>Email: {user.email}</h2>
+                        <h2>Speciality: {user.speciality}</h2>
+                        <h2>Profession: {user.profession}</h2>
+                        <h2>Organisation: {user.organisation}</h2>
                         <h2>
                             View License:{" "}
                             <button
