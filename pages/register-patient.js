@@ -21,7 +21,7 @@ const RegisterPat = () => {
     // const [organisation, setOrganisation] = useState("");
     // const [profession, setProfession] = useState("");
     const [loading, setLoading] = useState(false);
-    // const [license, setLicense] = useState("");
+    const [license, setLicense] = useState("");
     // const [licenseExpiry, setLicenseExpiry] = useState("");
     const [cPassClass, setCPassClass] = useState("border px-4 py-2 rounded");
     const [isDirty, setIsDirty] = useState(false);
@@ -51,6 +51,9 @@ const RegisterPat = () => {
         bloodGroup: bloodGroup,
         type: "patient",
         adminVerfiy: false,
+        license: license,
+        licenseFileName: "",
+        licenseFile: "",
     };
 
     useEffect(() => {
@@ -792,6 +795,22 @@ const RegisterPat = () => {
                                     <option value="O+">O+</option>
                                     <option value="O-">O-</option>
                                 </select>
+                            </div>
+                            <div className="flex flex-col my-2">
+                                <label htmlFor="license">
+                                    Government ID
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="license"
+                                    name="license"
+                                    className="border px-4 py-2 rounded"
+                                    placeholder="Enter your license ID"
+                                    value={license}
+                                    onChange={(e) => setLicense(e.target.value)}
+                                    required
+                                />
                             </div>
                             <div>
                                 <button

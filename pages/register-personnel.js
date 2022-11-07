@@ -30,6 +30,7 @@ const RegisterPers = () => {
     const [s, setS] = useState("");
     const [ll, setLL] = useState("");
     const [validPass, setValidPass] = useState(false);
+    const [validDate, setValidDate] = useState(false);
 
     const router = useRouter();
 
@@ -120,23 +121,29 @@ const RegisterPers = () => {
         licenseExpiry: licenseExpiry,
         type: "personnel",
         adminVerfiy: false,
+        licenseFileName: "",
+        licenseFile: "",
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        // console.log(user);
-        return userService
-            .register(user)
-            .then((res) => {
-                setLoading(false);
-                console.log(res);
-                router.push("/login");
-            })
-            .catch((err) => {
-                setLoading(false);
-                console.log(err);
-            });
+        if (validDate) {
+            setLoading(true);
+            // console.log(user);
+            return userService
+                .register(user)
+                .then((res) => {
+                    setLoading(false);
+                    console.log(res);
+                    router.push("/login");
+                })
+                .catch((err) => {
+                    setLoading(false);
+                    console.log(err);
+                });
+        } else {
+            alert("Please enter a valid license date");
+        }
     };
 
     const handleDate = (expiryDate) => {
@@ -165,6 +172,7 @@ const RegisterPers = () => {
                 }
             }
         }
+        setValidDate(true);
         return true;
     };
 
@@ -841,18 +849,6 @@ const RegisterPers = () => {
                                         Receptionist
                                     </option>
                                 </select>
-                                {/* <input
-                                    type="text"
-                                    id="profession"
-                                    name="profession"
-                                    className="border px-4 py-2 rounded"
-                                    placeholder="Enter your profession"
-                                    value={profession}
-                                    onChange={(e) =>
-                                        setProfession(e.target.value)
-                                    }
-                                    required
-                                /> */}
                             </div>
                             {profession === "Doctor" ? (
                                 <div className="flex flex-col my-2">
@@ -919,19 +915,6 @@ const RegisterPers = () => {
                                             Urologist
                                         </option>
                                     </select>
-
-                                    {/* <input
-                                        type="text"
-                                        id="speciality"
-                                        name="speciality"
-                                        className="border px-4 py-2 rounded"
-                                        placeholder="Enter your speciality"
-                                        value={speciality}
-                                        onChange={(e) =>
-                                            setSpeciality(e.target.value)
-                                        }
-                                        required
-                                    /> */}
                                 </div>
                             ) : null}
                             <div className="flex flex-col my-2">
@@ -954,18 +937,6 @@ const RegisterPers = () => {
                                     </option>
                                     {listOrg()}
                                 </select>
-                                {/* <input
-                                    type="text"
-                                    id="organisation"
-                                    name="organisation"
-                                    className="border px-4 py-2 rounded"
-                                    placeholder="Enter your organisation"
-                                    value={organisation}
-                                    onChange={(e) =>
-                                        setOrganisation(e.target.value)
-                                    }
-                                    required
-                                /> */}
                             </div>
                             <div className="flex flex-col my-2">
                                 <label htmlFor="license">

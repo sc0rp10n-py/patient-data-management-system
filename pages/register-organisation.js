@@ -30,6 +30,7 @@ const RegisterOrg = () => {
     const [s, setS] = useState("");
     const [ll, setLL] = useState("");
     const [validPass, setValidPass] = useState(false);
+    const [validDate, setValidDate] = useState(false);
 
     const router = useRouter();
 
@@ -106,29 +107,35 @@ const RegisterOrg = () => {
         licenseExpiry: licenseExpiry,
         type: type,
         adminVerfiy: false,
+        licenseFileName: "",
+        licenseFile: "",
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        // console.log(user);
-        return userService
-            .register(user)
-            .then((res) => {
-                setLoading(false);
-                console.log(res);
-                router.push("/login");
-            })
-            .catch((err) => {
-                setLoading(false);
-                console.log(err);
-            });
+        if (validDate) {
+            setLoading(true);
+            // console.log(user);
+            return userService
+                .register(user)
+                .then((res) => {
+                    setLoading(false);
+                    console.log(res);
+                    router.push("/login");
+                })
+                .catch((err) => {
+                    setLoading(false);
+                    console.log(err);
+                });
+        } else {
+            alert("Please enter a valid license date");
+        }
     };
 
     const handleDate = (expiryDate) => {
         const date = new Date();
         const year = date.getFullYear();
-        const month = date.getMonth()+1;
+        const month = date.getMonth() + 1;
         const day = date.getDate();
         const expiry = expiryDate.split("-");
         const expiryYear = expiry[0];
@@ -151,6 +158,7 @@ const RegisterOrg = () => {
                 }
             }
         }
+        setValidDate(true);
         return true;
     };
 

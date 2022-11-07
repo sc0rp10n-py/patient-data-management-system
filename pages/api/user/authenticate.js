@@ -35,6 +35,13 @@ function authenticate(req, res) {
         bloodGroup: user.bloodGroup,
         type: user.type,
         adminVerify: user.adminVerify,
+        license: user.license,
+        licenseExpiry: user.licenseExpiry,
+        licenseFileName: user.licenseFileName,
+        licenseFile: user.licenseFile,
+        speciality: user.speciality,
+        organisation: user.organisation,
+        profession: user.profession,
         token
     });
 }
