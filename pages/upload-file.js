@@ -12,6 +12,8 @@ const UploadFile = () => {
     const [loading, setLoading] = useState(false);
     const [owner, setOwner] = useState("");
     const [ownerId, setOwnerId] = useState("");
+    const [fileSize, setFileSize] = useState(0);
+    const [validFile, setValidFile] = useState(false);
 
     const router = useRouter();
 
@@ -28,33 +30,42 @@ const UploadFile = () => {
         fileName: fileName,
         fileUrl: fileUrl,
         fileType: fileType,
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        const b = new FormData();
-        b.append("file", file);
-        b.append("fileName", fileName);
-        b.append("fileUrl", fileUrl);
-        b.append("fileType", fileType);
-        b.append("owner", owner);
-        b.append("ownerId", ownerId);
-        return await userService.uploadFile(b)
-            .then((res) => {
-                setLoading(false);
-                router.push("/");
-            }
-        )
-            .catch((err) => {
-                setLoading(false);
-                setError(err);
-            }
-        );
+        if (validFile) {
+            setLoading(true);
+            const b = new FormData();
+            b.append("file", file);
+            b.append("fileName", fileName);
+            b.append("fileUrl", fileUrl);
+            b.append("fileType", fileType);
+            b.append("owner", owner);
+            b.append("ownerId", ownerId);
+            return await userService
+                .uploadFile(b)
+                .then((res) => {
+                    setLoading(false);
+                    router.push("/");
+                })
+                .catch((err) => {
+                    setLoading(false);
+                    setError(err);
+                });
+        } else {
+            setError("Invalid file. Select file again.");
+        }
     };
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
+        const size = file.size;
+        if (size > 1000000) {
+            alert("Max Limit of Upload is 1 MB");
+            return;
+        }
+        setValidFile(true);
         await setFile(file);
         await setFileName(file.name);
         await setFileUrl(URL.createObjectURL(file));
@@ -104,11 +115,19 @@ const UploadFile = () => {
                                     required
                                 >
                                     <option value="">Select file type</option>
-                                    <option value="Government ID">Government ID</option>
+                                    <option value="Government ID">
+                                        Government ID
+                                    </option>
                                     <option value="License">License</option>
-                                    <option value="Medical Bill">Medical Bill</option>
-                                    <option value="Prescription">Prescription</option>
-                                    <option value="Insurance Claim">Insurance Claim</option>
+                                    <option value="Medical Bill">
+                                        Medical Bill
+                                    </option>
+                                    <option value="Prescription">
+                                        Prescription
+                                    </option>
+                                    <option value="Insurance Claim">
+                                        Insurance Claim
+                                    </option>
                                 </select>
                             </div>
                             <div>
