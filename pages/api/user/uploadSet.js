@@ -6,11 +6,12 @@ let files = JSON.parse(fs.readFileSync('data/tempfiles.json'));
 
 const handler = async (req, res) => {
     const body = JSON.parse(req.body);
+    const fileName = body['fileName'];
     const fileType = body['fileType'];
     const owner = body['owner'];
     const ownerId = body['ownerId'];
     const file = {
-        name: "",
+        name: fileName,
         path: "",
         type: fileType,
         owner: owner,
@@ -18,7 +19,7 @@ const handler = async (req, res) => {
         verified: false,
     }
     files.push(file);
-    fs.writeFileSync('data/tempfiles.json', JSON.stringify(files, null, 4));
+    await fs.writeFileSync('data/tempfiles.json', JSON.stringify(files, null, 4));
     return res.status(200).json({});
 };
 

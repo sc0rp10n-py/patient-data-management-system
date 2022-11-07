@@ -63,7 +63,7 @@ const UploadFile = () => {
         const size = file.size;
         if (size > 1000000) {
             alert("Max Limit of Upload is 1 MB");
-            return;
+            return false;
         }
         setValidFile(true);
         await setFile(file);
@@ -94,7 +94,16 @@ const UploadFile = () => {
                                     className="border px-4 py-2 rounded"
                                     placeholder="Upload your file"
                                     accept=".pdf"
-                                    onChange={handleFileChange}
+                                    onChange={ 
+                                        (e) => {
+                                            const a = handleFileChange(e);
+                                            a.then((res) => {
+                                                if (res === false) {
+                                                    e.target.value = "";
+                                                }
+                                            });
+                                        }
+                                    }
                                     required
                                 />
                             </div>
