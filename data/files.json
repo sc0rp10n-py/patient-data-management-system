@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "name": "org_license.pdf",
+        "path": "/home/team/patient-data-management-system/data/documents/org_license.pdf",
+        "type": "License",
+        "owner": "org1@gmail.com",
+        "ownerId": "2",
+        "verified": false,
+        "shared": [],
+        "id": 1,
+        "dateCreated": "2022-11-07T18:21:34.548Z",
+        "dateUpdated": "2022-11-07T18:21:34.548Z"
+    }
+]
