@@ -6,10 +6,10 @@ import { userService } from "services";
 const Search = () => {
     const [users, setUsers] = useState(null);
     const [searchList, setSearchList] = useState([]);
-    const [name, setName] = useState("");
-    const [city, setCity] = useState("");
-    const [address, setAddress] = useState("");
-    const [country, setCountry] = useState("");
+    const [name, setName] = useState(null);
+    const [city, setCity] = useState(null);
+    const [address, setAddress] = useState(null);
+    const [country, setCountry] = useState(null);
 
     useEffect(() => {
         userService.getAll().then((x) => setUsers(x));
@@ -20,10 +20,10 @@ const Search = () => {
         // e.preventDefault();
         const searchList = users.filter(
             (user) =>
-                user.name.includes(name) ||
-                user.country.includes(country) ||
-                user.city.includes(city) ||
-                user.address.includes(address)
+                user.name.toLowerCase().includes(name) ||
+                user.country.toLowerCase().includes(country) ||
+                user.city.toLowerCase().includes(city) ||
+                user.address.toLowerCase().includes(address)
         );
         setSearchList(searchList);
         console.log("s", searchList);
@@ -75,9 +75,16 @@ const Search = () => {
                         }}
                     />
                     <div>
-                        {searchList.length > 0 && searchList.map((user, i) => {
-                            <p id="i">{user.name}</p>;
-                        })}
+                        {Object.keys(searchList).length > 0 && Object.keys(searchList).map((key) => (
+                            <div key={key} className="border p-5 rounded m-5">
+                                <p>Name: {searchList[key].name}</p>
+                                <p>Country: {searchList[key].country}</p>
+                                <p>City: {searchList[key].city}</p>
+                                <p>Address: {searchList[key].address}</p>
+                                <p>Email: {searchList[key].email}</p>
+                                <p>Phone: {searchList[key].phone}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
