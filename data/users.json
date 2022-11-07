@@ -13,21 +13,5 @@
         "id": 1,
         "dateCreated": "2022-11-06T19:56:24.852Z",
         "dateUpdated": "2022-11-06T19:56:24.852Z"
-    },
-    {
-        "name": "Org 1",
-        "email": "org1@gmail.com",
-        "address": "org 1 address",
-        "city": "org 1 city",
-        "country": "United States",
-        "phone": "2347892739",
-        "license": "23456",
-        "licenseExpiry": "2022-11-17",
-        "type": "Hospital",
-        "adminVerify": false,
-        "hash": "$2a$10$IRVOLhTiRyGwTfbKrGdn5O9lLankHuB3xbj7UET6LiWsbn7em4RJO",
-        "id": 2,
-        "dateCreated": "2022-11-07T18:20:34.868Z",
-        "dateUpdated": "2022-11-07T18:20:34.868Z"
     }
 ]
