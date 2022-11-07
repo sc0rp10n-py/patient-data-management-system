@@ -17,11 +17,11 @@ const Nav = () => {
                 <div className="mb-10">
                     <h1 className="text-2xl">Our Links</h1>
                     <div className="flex flex-col">
-                        {/* <Link href={"/payments"}>
+                        <Link href={"/payments"}>
                             <a className="text-blue-500 hover:text-blue-600">
                                 Payments
                             </a>
-                        </Link> */}
+                        </Link>
                         <Link href={"/upload-file"}>
                             <a className="text-blue-500 hover:text-blue-600">
                                 Upload File
