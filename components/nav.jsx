@@ -42,6 +42,11 @@ const Nav = () => {
                                 Payments
                             </a>
                         </Link>
+                        <Link href={"/upload-file"}>
+                            <a className="text-blue-500 hover:text-blue-600">
+                                Upload File
+                            </a>
+                        </Link>
                         <a onClick={logout} className="text-blue-500 hover:text-blue-600 hover:cursor-pointer">
                             Logout
                         </a>

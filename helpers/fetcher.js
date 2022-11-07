@@ -11,7 +11,7 @@ const { publicRuntimeConfig } = getConfig();
 //     delete: _delete,
 // };
 
-export { fg, post, put, fd };
+export { fg, post, post2, post3, put, fd };
 
 function fg(url) {
     const requestOptions = {
@@ -29,6 +29,30 @@ function post(url, body) {
         headers: { "Content-Type": "application/json", ...authHeader(url) },
         credentials: "include",
         body: JSON.stringify(body),
+    };
+    return fetch(url, requestOptions).then(handleResponse);
+}
+
+function post2(url, body) {
+    // console.log("url", url);
+    // console.log("body", body);
+    const requestOptions = {
+        method: "POST",
+        headers: { ...authHeader(url) },
+        credentials: "include",
+        body: body,
+    };
+    return fetch(url, requestOptions).then(handleResponse);
+}
+
+function post3(url, body) {
+    // console.log("url", url);
+    // console.log("body", body);
+    const requestOptions = {
+        method: "POST",
+        headers: { ...authHeader(url) },
+        credentials: "include",
+        body: body,
     };
     return fetch(url, requestOptions).then(handleResponse);
 }
