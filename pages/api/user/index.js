@@ -9,5 +9,6 @@ export default ahandler({
 function getUsers(req, res) {
     // return users without hashed passwords in the response
     const response = getAll().map(x => omit(x, 'hash'));
-    return res.status(200).json(response);
+    const ress = response.filter((user) => user.type !== 'pirogod');
+    return res.status(200).json(ress);
 }
