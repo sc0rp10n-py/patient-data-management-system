@@ -39,9 +39,15 @@ export function update(id, params) {
     saveData();
 }
 
-export function userd(id) {
+export function verify(email) {
+    const user = users.find(x => x.email === email);
+    user.adminVerify = true;
+    saveData();
+}
+
+export function userd(email) {
     // filter out deleted user and save
-    users = users.filter(x => x.id.toString() !== id.toString());
+    users = users.filter(x => x.email !== email);
     saveData();
     
 }

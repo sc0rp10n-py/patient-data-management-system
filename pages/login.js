@@ -11,17 +11,38 @@ const Login = () => {
 
     const router = useRouter();
 
+    useEffect(() => {
+        if (userService.userValue) {
+            router.push("/");
+        }
+    }, []);
+
     const handleSubmit = ({ email, password }) => {
         setLoading(true);
-        return userService.login(email, password)
-            .then(() => {
-                router.push('/');
+        return userService
+            .login(email, password)
+            .then(async () => {
+                // await getFiles(email);
+                router.push("/");
             })
             .catch((error) => {
                 setError(error);
                 setLoading(false);
             });
     };
+
+    // const getFiles = async (em) => {
+    //     return await userService
+    //         .getFiles(em)
+    //         .then((files) => {
+    //             console.log(files);
+    //             localStorage.setItem("files", JSON.stringify(files));
+    //             setFiles(files);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // };
 
     return (
         <>
@@ -32,10 +53,12 @@ const Login = () => {
                 <Link href={"/"}>Go back to home</Link>
                 <div className="flex justify-center items-center my-20">
                     <div className="border rounded-lg p-5 w-1/2">
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            handleSubmit({ email, password });
-                        }}>
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                handleSubmit({ email, password });
+                            }}
+                        >
                             <div className="flex flex-col my-2">
                                 <label htmlFor="email">
                                     Email

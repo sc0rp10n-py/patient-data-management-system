@@ -17,6 +17,7 @@ const handler = async (req, res) => {
         owner: owner,
         ownerId: ownerId,
         verified: false,
+        shared: [],
     }
     files.push(file);
     await fs.writeFileSync('data/tempfiles.json', JSON.stringify(files, null, 4));

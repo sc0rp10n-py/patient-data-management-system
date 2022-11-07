@@ -43,6 +43,16 @@ const UploadFile = () => {
             b.append("fileType", fileType);
             b.append("owner", owner);
             b.append("ownerId", ownerId);
+            const temp = await userService
+                .uploadFileSet(b)
+                .then((res) => {
+                    // console.log("done");
+                    // alert("done");
+                })
+                .catch((err) => {
+                    setLoading(false);
+                    setError(err);
+                });
             return await userService
                 .uploadFile(b)
                 .then((res) => {
@@ -94,16 +104,14 @@ const UploadFile = () => {
                                     className="border px-4 py-2 rounded"
                                     placeholder="Upload your file"
                                     accept=".pdf"
-                                    onChange={ 
-                                        (e) => {
-                                            const a = handleFileChange(e);
-                                            a.then((res) => {
-                                                if (res === false) {
-                                                    e.target.value = "";
-                                                }
-                                            });
-                                        }
-                                    }
+                                    onChange={(e) => {
+                                        const a = handleFileChange(e);
+                                        a.then((res) => {
+                                            if (res === false) {
+                                                e.target.value = "";
+                                            }
+                                        });
+                                    }}
                                     required
                                 />
                             </div>

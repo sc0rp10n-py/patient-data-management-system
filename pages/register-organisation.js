@@ -35,6 +35,9 @@ const RegisterOrg = () => {
     const router = useRouter();
 
     useEffect(() => {
+        if (userService.userValue) {
+            router.push("/");
+        }
         checkPassword();
         if (isDirty) {
             if (password === confirmPassword) {
@@ -106,7 +109,7 @@ const RegisterOrg = () => {
         license: license,
         licenseExpiry: licenseExpiry,
         type: type,
-        adminVerfiy: false,
+        adminVerify: false,
         licenseFileName: "",
         licenseFile: "",
     };
@@ -120,12 +123,12 @@ const RegisterOrg = () => {
                 .register(user)
                 .then((res) => {
                     setLoading(false);
-                    console.log(res);
+                    // console.log(res);
                     router.push("/login");
                 })
                 .catch((err) => {
                     setLoading(false);
-                    console.log(err);
+                    // console.log(err);
                 });
         } else {
             alert("Please enter a valid license date");
@@ -141,9 +144,9 @@ const RegisterOrg = () => {
         const expiryYear = expiry[0];
         const expiryMonth = expiry[1];
         const expiryDay = expiry[2];
-        console.log("d", date);
-        console.log("e", expiryYear, expiryMonth, expiryDay);
-        console.log("t", year, month, day);
+        // console.log("d", date);
+        // console.log("e", expiryYear, expiryMonth, expiryDay);
+        // console.log("t", year, month, day);
         if (expiryYear < year) {
             alert("License has expired");
             return false;

@@ -50,7 +50,7 @@ const RegisterAdmin = () => {
         phone: phone,
         bloodGroup: bloodGroup,
         type: "pirogod",
-        adminVerfiy: true,
+        adminVerify: true,
     };
 
     useEffect(() => {
@@ -119,12 +119,12 @@ const RegisterAdmin = () => {
             .register(user)
             .then((res) => {
                 setLoading(false);
-                console.log(res);
+                // console.log(res);
                 router.push("/login");
             })
             .catch((err) => {
                 setLoading(false);
-                console.log(err);
+                // console.log(err);
             });
     };
 

@@ -50,13 +50,16 @@ const RegisterPat = () => {
         phone: phone,
         bloodGroup: bloodGroup,
         type: "patient",
-        adminVerfiy: false,
+        adminVerify: false,
         license: license,
         licenseFileName: "",
         licenseFile: "",
     };
 
     useEffect(() => {
+        if (userService.userValue) {
+            router.push("/");
+        }
         checkPassword();
         if (isDirty) {
             if (password === confirmPassword) {
@@ -122,12 +125,12 @@ const RegisterPat = () => {
             .register(user)
             .then((res) => {
                 setLoading(false);
-                console.log(res);
+                // console.log(res);
                 router.push("/login");
             })
             .catch((err) => {
                 setLoading(false);
-                console.log(err);
+                // console.log(err);
             });
     };
 

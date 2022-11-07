@@ -23,6 +23,15 @@ export const userService = {
     getById,
     update,
     uploadFile,
+    uploadFileSet,
+    getFiles,
+    getLicense,
+    viewFile,
+    verifyUser,
+    deleteUser,
+    deleteFile,
+    shareFile,
+    getSharedFiles,
     delete: ud,
 };
 
@@ -70,14 +79,50 @@ function update(id, params) {
     });
 }
 
-function uploadFile(file) {
-    // console.log("file", file);
+function uploadFileSet(file) {
     var object = {};
     file.forEach((value, key) => (object[key] = value));
     var json = JSON.stringify(object);
-    const temp = post2(`${baseUrl}/uploadSet`, json);
-    // console.log("temp", temp);
+    return post2(`${baseUrl}/uploadSet`, json);
+}
+
+function uploadFile(file) {
     return post2(`${baseUrl}/upload`, file);
+}
+
+function getFiles(email) {
+    return post(`${baseUrl}/getFiles`, email);
+}
+
+function getSharedFiles(email) {
+    return post(`${baseUrl}/getSharedFiles`, email);
+}
+
+function getLicense(email) {
+    return post(`${baseUrl}/getLicense`, email);
+}
+
+function verifyUser(email) {
+    return post(`${baseUrl}/verifyUser`, email);
+}
+
+function deleteUser(email) {
+    return post(`${baseUrl}/deleteUser`, email);
+}
+
+function deleteFile(id) {
+    return post(`${baseUrl}/deleteFile`, id);
+}
+
+function shareFile(data) {
+    var object = {};
+    data.forEach((value, key) => (object[key] = value));
+    var json = JSON.stringify(object);
+    return post3(`${baseUrl}/shareFile`, json);
+}
+
+function viewFile(file) {
+    return post(`${baseUrl}/viewFile`, file);
 }
 
 // prefixed with underscored because delete is a reserved word in javascript

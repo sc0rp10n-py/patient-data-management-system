@@ -6,11 +6,13 @@ import "styles/globals.css";
 
 import { userService } from "services";
 import Nav from "components/nav";
+import Nav2 from "components/nav2";
 
 function App({ Component, pageProps }) {
     const router = useRouter();
     const [user, setUser] = useState(null);
     const [authorized, setAuthorized] = useState(false);
+    const [navToggle, setNavToggle] = useState(false);
 
     useEffect(() => {
         // on initial load - run auth check
@@ -35,16 +37,23 @@ function App({ Component, pageProps }) {
     function authCheck(url) {
         // redirect to login page if accessing a private page and not logged in
         setUser(userService.userValue);
-        const publicPaths = ["/login", "/register-personnel", "/register-patient", "/register-organisation"];
+        const publicPaths = [
+            "/login",
+            "/register-personnel",
+            "/register-patient",
+            "/register-organisation",
+        ];
         const path = url.split("?")[0];
         if (!userService.userValue && !publicPaths.includes(path)) {
             setAuthorized(false);
+            setNavToggle(true);
             router.push({
                 pathname: "/login",
                 query: { returnUrl: router.asPath },
             });
         } else {
             setAuthorized(true);
+            setNavToggle(false);
         }
     }
 
@@ -56,9 +65,7 @@ function App({ Component, pageProps }) {
 
             <div>{authorized && <Component {...pageProps} />}</div>
 
-            <footer>
-                <Nav />
-            </footer>
+            <footer>{user ? <Nav2 /> : <Nav />}</footer>
         </>
     );
 }

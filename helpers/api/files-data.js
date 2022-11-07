@@ -39,6 +39,12 @@ export function update(id, params) {
     saveData();
 }
 
+export function addShare(id, email) {
+    const file = files.find(x => x.id.toString() === id.toString());
+    file.shared.push(email);
+    saveData();
+}
+
 export function filed(id) {
     // filter out deleted file and save
     files = files.filter(x => x.id.toString() !== id.toString());
