@@ -2,12 +2,15 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { userService } from "../services/userService";
+import Captcha from "components/captcha";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [cStatus, setCStatus] = useState(false);
+    const [modal, setModal] = useState(false);
 
     const router = useRouter();
 
@@ -17,8 +20,20 @@ const Login = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (cStatus) {
+            handleLogin({ email, password });
+        }
+    }, [cStatus]);
+
     const handleSubmit = ({ email, password }) => {
         setLoading(true);
+        setModal(true);
+        window.scrollTo(0, 0);
+    };
+
+    const handleLogin = async ({email, password}) => {
+        setModal(false);
         return userService
             .login(email, password)
             .then(async () => {
@@ -29,6 +44,10 @@ const Login = () => {
                 setError(error);
                 setLoading(false);
             });
+    };
+
+    const updateStatus = (b) => {
+        setCStatus(b);
     };
 
     // const getFiles = async (em) => {
@@ -123,6 +142,49 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            {modal ? (
+                <div className="z-20 absolute top-0 right-0 w-full min-h-screen bg-gray-500/50 flex justify-center items-center">
+                    <div className="container mx-auto">
+                        <div className="bg-black bg-[url('/images/background.png')] bg-cover bg-center rounded-lg p-10">
+                            <div className="flex justify-end my-10">
+                                <button
+                                    className="transition-transform hover:scale-95"
+                                    onClick={() => {
+                                        setModal(false);
+                                        setLoading(false);
+                                    }}
+                                >
+                                    <svg
+                                        width="100"
+                                        height="100"
+                                        viewBox="0 0 100 100"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-10 h-10"
+                                    >
+                                        <line
+                                            x1="0"
+                                            y1="50"
+                                            x2="50"
+                                            y2="0"
+                                            stroke-width="5"
+                                            stroke="white"
+                                        />
+                                        <line
+                                            x1="0"
+                                            y1="0"
+                                            x2="50"
+                                            y2="50"
+                                            stroke-width="5"
+                                            stroke="white"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <Captcha data={updateStatus} />
+                        </div>
+                    </div>
+                </div>
+            ) : null}
         </>
     );
 };
