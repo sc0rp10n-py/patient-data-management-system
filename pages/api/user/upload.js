@@ -4,6 +4,8 @@ import { promises as fss } from "fs";
 import { create } from "../../../helpers/api/files-data";
 import { ahandler } from "../../../helpers/api/ahandler";
 import fs from 'fs';
+import { createHash } from 'node:crypto';
+
 export const config = {
     api: {
         bodyParser: false,
@@ -30,6 +32,12 @@ const readFile = (req, tempfiles) => {
             // console.log("tf", tf);
             tf.name = files.file['originalFilename'];
             tf.path = files.file['filepath'];
+            const rf = fs.readFileSync(files.file['filepath']);
+            const myFile = (rf.toString('utf8'));
+            const hash = createHash('md5')
+            hash.update(myFile)
+            const digest = hash.digest('base64')
+            tf.hash = digest;
             create(tf);
             const temp = [];
             fs.writeFileSync('data/tempfiles.json', JSON.stringify(temp, null, 4));

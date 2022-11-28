@@ -17,6 +17,7 @@ const handler = async (req, res) => {
         owner: owner,
         ownerId: ownerId,
         verified: false,
+        hash: "",
         shared: [],
     }
     files.push(file);
