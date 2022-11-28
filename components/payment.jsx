@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { userService } from "services"; 
+import { userService } from "services";
 
 const Payment = () => {
     const [user, setUser] = useState("");
@@ -22,7 +22,7 @@ const Payment = () => {
 
     // const handleSubmit = (e) => {
     //     e.preventDefault();
-        
+
     // };
 
     return (
@@ -30,33 +30,37 @@ const Payment = () => {
             <div className="my-10 container mx-auto flex flex-col justify-center items-center">
                 <div className="border p-3 rounded">
                     <form action="/api/user/payGateway" method="POST">
-                        <div className="">
-                            <input
-                                type="number"
-                                placeholder="Enter Amount"
-                                className="border-2 border-gray-300 p-2 rounded"
-                                value={amount}
-                                onChange={(e) => setAmount(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="">
-                            <input
-                                type="text"
-                                placeholder="Enter Name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="border-2 border-gray-300 p-2 rounded"
-                                required
-                            />
-                        </div>
-                        <div className="flex justify-center">
-                            <button
-                                className="bg-blue-500 text-white px-7 py-2 rounded m-5"
-                            >
-                                Pay
-                            </button>
-                        </div>
+                        <section>
+                            <ul className="list-none">
+                                <li>
+                                    <label>
+                                        <span>Please enter quantity of Item1, Price for each quantity is ₹1000&nbsp;</span>
+                                        <input type="text" name="amount" onChange={(e) => helper(e.target.value)} STYLE="color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #72A4D2;" size="10" />
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <span>Please enter quantity of Item2, Price for each quantity is ₹100&nbsp;&nbsp;&nbsp;</span>
+                                        <input type="text" name="amount" onChange={(e) => helper(e.target.value)} STYLE="color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #72A4D2;" size="10" />
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <span>Please enter quantity of Item3, Price for each quantity is ₹10 &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <input type="text" name="amount" onChange={(e) => helper(e.target.value)} STYLE="color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #72A4D2;" size="10" />
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <span>Please enter quantity of Item4, Price for each quantity is ₹5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <input type="text" name="amount" onChange={(e) => helper(e.target.value)} STYLE="color: #FFFFFF; font-family: Verdana; font-weight: bold; font-size: 12px; background-color: #72A4D2;" size="10" />
+                                    </label>
+                                </li>
+                            </ul>
+                            <br />
+                            <br />
+                            <input type="submit" name="amount" value="Pay" /><br></br>
+                        </section>
                     </form>
                 </div>
                 <div className="my-10">
