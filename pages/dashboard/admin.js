@@ -38,8 +38,6 @@ const Admin = () => {
         // console.log(otherUsers);
     };
 
-    console.log(process.cwd());
-
     useEffect(() => {
         getUser();
     }, []);
@@ -53,7 +51,7 @@ const Admin = () => {
     }
 
     const getLicense = async (e) => {
-        const license = await userService
+        return await userService
             .getLicense(e)
             .then((res) => {
                 // console.log(res);
@@ -199,7 +197,7 @@ const Admin = () => {
                                                     "application/json",
                                             },
                                             body: JSON.stringify({
-                                                path: licenses[0].path,
+                                                path: licenses.path,
                                             }),
                                         });
                                         setShowLicense(false);
@@ -233,7 +231,7 @@ const Admin = () => {
                             </div>
                             <iframe
                                 // src={`data/documents/${licenses.name}`}
-                                src={licenses[0].path}
+                                src={licenses.path}
                                 width="100%"
                                 height="400px"
                             ></iframe>

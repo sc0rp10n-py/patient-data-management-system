@@ -124,9 +124,7 @@ const Organisation = () => {
         <>
             <div className="container mx-auto my-10">
                 <h1 className="text-4xl text-center">Organisation Dashboard</h1>
-                <Link href="/edit">
-                    Edit Profile
-                </Link>
+                <Link href="/edit">Edit Profile</Link>
                 <div className="border rounded p-5 m-5">
                     <div className="space-y-3">
                         <h2>Name: {user.name}</h2>
@@ -181,7 +179,10 @@ const Organisation = () => {
                                             <button
                                                 className="rounded bg-red-500 px-7 py-1 text-white font-bold"
                                                 onClick={() =>
-                                                    deleteFile({id: file.id, email: user.email})
+                                                    deleteFile({
+                                                        id: file.id,
+                                                        email: user.email,
+                                                    })
                                                 }
                                             >
                                                 Delete
@@ -284,24 +285,118 @@ const Organisation = () => {
                 </div>
             </div>
             {showLicense ? (
-                <>
-                    <iframe
-                        // src={`data/documents/${licenses.name}`}
-                        src={licenses[0].path}
-                        width="100%"
-                        height="100%"
-                    ></iframe>
-                </>
+                <div className="z-20 absolute top-0 right-0 w-full min-h-screen bg-gray-500/50 flex justify-center items-center">
+                    <div className="container mx-auto">
+                        <div className="bg-black bg-[url('/images/background.png')] bg-cover bg-center rounded-lg p-10">
+                            <div className="flex justify-end my-10">
+                                <button
+                                    className="transition-transform hover:scale-95"
+                                    onClick={async () => {
+                                        await fetch("/api/del", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            body: JSON.stringify({
+                                                path: licenses.path,
+                                            }),
+                                        });
+                                        setShowLicense(false);
+                                    }}
+                                >
+                                    <svg
+                                        width="100"
+                                        height="100"
+                                        viewBox="0 0 100 100"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-10 h-10"
+                                    >
+                                        <line
+                                            x1="0"
+                                            y1="50"
+                                            x2="50"
+                                            y2="0"
+                                            stroke-width="5"
+                                            stroke="white"
+                                        />
+                                        <line
+                                            x1="0"
+                                            y1="0"
+                                            x2="50"
+                                            y2="50"
+                                            stroke-width="5"
+                                            stroke="white"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <iframe
+                                // src={`data/documents/${licenses.name}`}
+                                src={licenses.path}
+                                width="100%"
+                                height="400px"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
             ) : null}
             {showFile ? (
-                <>
-                    <iframe
-                        // src={`data/documents/${licenses.name}`}
-                        src={file.path}
-                        width="100%"
-                        height="100%"
-                    ></iframe>
-                </>
+                <div className="z-20 absolute top-0 right-0 w-full min-h-screen bg-gray-500/50 flex justify-center items-center">
+                    <div className="container mx-auto">
+                        <div className="bg-black bg-[url('/images/background.png')] bg-cover bg-center rounded-lg p-10">
+                            <div className="flex justify-end my-10">
+                                <button
+                                    className="transition-transform hover:scale-95"
+                                    onClick={async () => {
+                                        await fetch("/api/del", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            body: JSON.stringify({
+                                                path: file.path,
+                                            }),
+                                        });
+                                        setShowFile(false);
+                                    }}
+                                >
+                                    <svg
+                                        width="100"
+                                        height="100"
+                                        viewBox="0 0 100 100"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-10 h-10"
+                                    >
+                                        <line
+                                            x1="0"
+                                            y1="50"
+                                            x2="50"
+                                            y2="0"
+                                            stroke-width="5"
+                                            stroke="white"
+                                        />
+                                        <line
+                                            x1="0"
+                                            y1="0"
+                                            x2="50"
+                                            y2="50"
+                                            stroke-width="5"
+                                            stroke="white"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            <iframe
+                                // src={`data/documents/${licenses.name}`}
+                                src={file.path}
+                                width="100%"
+                                height="100%"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
             ) : null}
         </>
     );

@@ -1,24 +1,35 @@
 import { ahandler } from "helpers/api/ahandler";
 import fs from "fs";
-let files = JSON.parse(fs.readFileSync("data/files.json"));
-let users = JSON.parse(fs.readFileSync("data/users.json"));
 
 const handler = async (req, res) => {
     try {
+        let files = JSON.parse(fs.readFileSync("data/files.json"));
+        let users = JSON.parse(fs.readFileSync("data/users.json"));
         const email = req.body;
         const user = users.find((user) => user.email === email);
-        const userFiles = files.filter(
-            (file) => (file.owner === email && file.type === "License") || (user.type === "patient"  && file.owner === email && file.type === "Government ID")
+        // console.log(email);
+        const userFile = files.find(
+            (file) =>
+                (file.owner === email && file.type === "License") ||
+                (user.type === "patient" &&
+                    file.owner === email &&
+                    file.type === "Government ID")
         );
-        // console.log(userFiles);
+        // console.log(userFile);
+        // console.log(userFile);
 
-        if (userFiles) {
+        if (userFile) {
             const neww = fs.copyFileSync(
-                userFiles[0].path,
-                "public/" + userFiles[0].name
+                userFile.path,
+                "public/" + userFile.name
             );
-            userFiles[0].path = "/" + userFiles[0].name;
-            return res.status(200).json(userFiles);
+            userFile.path = "/" + userFile.name;
+            const o = {
+                name: userFile.name,
+                type: userFile.type,
+                path: userFile.path,
+            };
+            return res.status(200).json(o);
         }
     } catch (err) {
         // console.log(err);
