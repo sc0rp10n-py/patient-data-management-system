@@ -37,5 +37,18 @@
         "id": 3,
         "dateCreated": "2022-11-28T07:36:52.036Z",
         "dateUpdated": "2022-11-28T07:36:52.036Z"
+    },
+    {
+        "name": "patient_license.pdf",
+        "path": "/home/sc0rp10n/deeks/patient-data-management-system/data/documents/patient_license.pdf",
+        "type": "Government ID",
+        "owner": "deeksha20049@iiitd.ac.in",
+        "ownerId": "6",
+        "verified": false,
+        "hash": "Zv0Qwgb/F5Ae74aungVLJQ==",
+        "shared": [],
+        "id": 4,
+        "dateCreated": "2022-11-28T17:06:20.858Z",
+        "dateUpdated": "2022-11-28T17:06:20.858Z"
     }
 ]
