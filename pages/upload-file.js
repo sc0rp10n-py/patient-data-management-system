@@ -14,6 +14,9 @@ const UploadFile = () => {
     const [ownerId, setOwnerId] = useState("");
     const [fileSize, setFileSize] = useState(0);
     const [validFile, setValidFile] = useState(false);
+    const [chkOtp, setChkOtp] = useState(false);
+    const [otp, setOtp] = useState(null);
+    const [sentOtp, setSentOtp] = useState(false);
 
     const router = useRouter();
 
@@ -34,7 +37,7 @@ const UploadFile = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (validFile) {
+        if (validFile && chkOtp) {
             setLoading(true);
             const b = new FormData();
             b.append("file", file);
@@ -146,6 +149,101 @@ const UploadFile = () => {
                                         Insurance Claim
                                     </option>
                                 </select>
+                            </div>
+                            <div className="flex flex-col my-2">
+                                <label htmlFor="otp">
+                                    OTP
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <div className="flex flex-row justify-around">
+                                    <input
+                                        type="text"
+                                        id="otp"
+                                        name="otp"
+                                        className="border px-4 py-2 rounded"
+                                        placeholder="Enter OTP"
+                                        value={otp}
+                                        onChange={(e) => {
+                                            setOtp(e.target.value);
+                                        }}
+                                        required
+                                    />
+                                    {sentOtp ? (
+                                        <>
+                                            <button
+                                                className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+                                                onClick={async (e) => {
+                                                    e.preventDefault();
+                                                    await fetch(
+                                                        "api/verifyOtp",
+                                                        {
+                                                            method: "POST",
+                                                            headers: {
+                                                                "Content-Type":
+                                                                    "application/json",
+                                                            },
+                                                            body: JSON.stringify(
+                                                                {
+                                                                    otp: otp,
+                                                                    email: owner,
+                                                                }
+                                                            ),
+                                                        }
+                                                    ).then((res) => {
+                                                        if (
+                                                            res.status === 200
+                                                        ) {
+                                                            setChkOtp(true);
+                                                            alert(
+                                                                "OTP verified"
+                                                            );
+                                                        } else {
+                                                            alert(
+                                                                "Invalid OTP"
+                                                            );
+                                                        }
+                                                    });
+                                                }}
+                                            >
+                                                Check
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <button
+                                                className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+                                                onClick={async (e) => {
+                                                    e.preventDefault();
+                                                    await fetch(
+                                                        "/api/sendOtp",
+                                                        {
+                                                            method: "POST",
+                                                            headers: {
+                                                                "Content-Type":
+                                                                    "application/json",
+                                                            },
+                                                            body: JSON.stringify(
+                                                                { email: owner }
+                                                            ),
+                                                        }
+                                                    ).then((res) => {
+                                                        if (
+                                                            res.status === 200
+                                                        ) {
+                                                            setSentOtp(true);
+                                                        } else {
+                                                            setError(
+                                                                "Error sending OTP. Try again later."
+                                                            );
+                                                        }
+                                                    });
+                                                }}
+                                            >
+                                                Send
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                             <div>
                                 <button

@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
+    images: {
+        domains: ["latex.codecogs.com"],
+    },
     swcMinify: true,
     serverRuntimeConfig: {
         secret: "s3aTl2BV7EeaIIfMkQ6VKA",
